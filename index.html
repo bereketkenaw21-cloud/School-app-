@@ -5,56 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mertule Mariam School App Pro</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
     <div id="splash" class="splash-screen">
         <div class="glass-frame">
-            <h1 class="glow-text">እንኳን ወደ መርጡለ ማሪያም School app በደህና መጣቹህ</h1>
+            <div class="logo-circle">M</div>
+            <h1 class="glow-text">እንኳን ወደ መርጡለ ማሪያም School App በደህና መጣችሁ!</h1>
+            <p class="sub-text">የወደፊት የትምህርት ጉዞዎን እዚህ ይጀምሩ</p>
             <div class="divider"></div>
-            <p class="author-tag">በበረከት ቀናው የተዘጋጀ</p>
+            <p class="author-tag">በ በረከት ቀናው የተዘጋጀ</p>
+            <div class="loader-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-section" class="login-overlay hidden">
+        <div class="login-card">
+            <h2 style="color: var(--tg-blue);">Login</h2>
+            <select id="role" onchange="checkRole()">
+                <option value="student">ተማሪ (Student)</option>
+                <option value="teacher">መምህር (Teacher)</option>
+                <option value="admin">ርሰ መምህር (Admin)</option>
+            </select>
+            <div id="pin-area"></div>
+            <input type="tel" id="phone" placeholder="ስልክ ቁጥር (09...)" maxlength="10">
+            <button class="submit-btn" onclick="handleLogin()">ግባ (Login)</button>
         </div>
     </div>
 
     <div id="app-container" class="hidden">
         <header class="tg-header">
             <div class="header-top">
-                <button id="back-btn" class="icon-btn hidden" onclick="goBack()">⬅</button>
+                <button id="back-btn" class="hidden" onclick="goBack()" style="background:none; border:none; color:white; font-size:1.2rem;">⬅</button>
                 <div class="brand-info">
                     <span class="app-title">Mertule School Pro</span>
-                    <span id="status-text" class="status-online">online</span>
+                    <span class="status-online">online</span>
                 </div>
-                <button class="logout-icon" onclick="logout()">Logout 🚪</button>
+                <button onclick="logout()" style="background:#fff; color:#333; border:none; padding:5px 10px; border-radius:8px; font-size:0.8rem; font-weight:bold;">Logout 🚪</button>
             </div>
-            <div id="announcement-bar" class="ticker hidden"></div>
         </header>
 
-        <main id="main-content" class="scrollable-content"></main>
+        <div id="announcement-bar" class="hidden"></div>
+
+        <main id="main-content">
+            </main>
     </div>
 
-    <div id="login-section" class="login-overlay hidden">
-        <div class="login-card">
-            <h2>መለያዎን ያስገቡ</h2>
-            <div class="input-form">
-                <input type="text" id="fname" placeholder="ስም">
-                <input type="text" id="lname" placeholder="የአባት ስም">
-                <input type="tel" id="phone" placeholder="09/07... (የቴሌ ስልክ ብቻ)">
-                <input type="number" id="age" placeholder="እድሜ">
-                <select id="gender">
-                    <option value="">ፆታ</option>
-                    <option value="ወንድ">ወንድ</option>
-                    <option value="ሴት">ሴት</option>
-                </select>
-                <select id="role" onchange="checkRole()">
-                    <option value="student">ተማሪ</option>
-                    <option value="teacher">መምህር</option>
-                    <option value="admin">ርሰ መምህር / አስተዳደር</option>
-                </select>
-                <div id="pin-area"></div>
-                <button class="submit-btn" onclick="handleLogin()">መተግበሪያውን ክፈት</button>
-            </div>
-        </div>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
