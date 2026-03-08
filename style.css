@@ -1,0 +1,28 @@
+:root {
+    --primary: #27ae60;
+    --secondary: #2980b9;
+    --accent: #e67e22;
+    --danger: #c0392b;
+}
+
+body { margin: 0; font-family: 'Arial', sans-serif; background: #ecf0f1; overflow-x: hidden; }
+.screen { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hidden { display: none !important; }
+
+/* Splash Screen */
+.welcome-text { font-size: 28px; color: #2c3e50; text-align: center; animation: zoomIn 1.5s; }
+.author-text { color: #e74c3c; font-size: 22px; font-weight: bold; background: linear-gradient(to right, orange, red); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Login Card */
+.login-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 400px; }
+input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+
+.main-btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+/* Dashboard Grid */
+.grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; width: 100%; box-sizing: border-box; }
+.card { padding: 30px; border-radius: 15px; color: white; font-weight: bold; text-align: center; cursor: pointer; transition: transform 0.2s; }
+.card:active { transform: scale(0.95); }
+
+/* Navigation */
+.top-nav { width: 100%; background: #fff; padding: 10px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
