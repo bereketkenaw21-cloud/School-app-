@@ -2,63 +2,59 @@
 <html lang="am">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mertule Mariam School App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mertule Mariam School App Pro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#27ae60">
 </head>
 <body>
-
-    <div id="splash" class="screen">
-        <div class="welcome-container">
-            <h1 class="welcome-text">እንኳን ወደ መርጡለ ማሪያም School app በደህና መጣቹህ</h1>
-            <p class="author-text">በበረከት ቀናው የተዘጋጀ</p>
+    <div id="splash" class="splash-screen">
+        <div class="glass-frame">
+            <h1 class="glow-text">እንኳን ወደ መርጡለ ማሪያም School app በደህና መጣቹህ</h1>
+            <div class="divider"></div>
+            <p class="author-tag">በበረከት ቀናው የተዘጋጀ</p>
         </div>
     </div>
 
-    <div id="login-section" class="screen hidden">
-        <div class="login-card">
-            <h2>የመግቢያ ፎርም</h2>
-            <input type="text" id="fname" placeholder="ስም">
-            <input type="text" id="lname" placeholder="የአባት ስም">
-            <input type="tel" id="phone" placeholder="የኢትዮ ቴሌኮም ስልክ ቁጥር">
-            <input type="number" id="age" placeholder="እድሜ">
-            <select id="gender">
-                <option value="">ፆታ ይምረጡ</option>
-                <option value="ወንድ">ወንድ</option>
-                <option value="ሴት">ሴት</option>
-            </select>
-            <select id="role" onchange="checkRole()">
-                <option value="student">ተማሪ</option>
-                <option value="teacher">መምህር</option>
-                <option value="admin">ርሰ መምህር / አስተዳደር</option>
-            </select>
-            <div id="pin-area"></div>
-            <button class="main-btn" onclick="handleLogin()">ግባ</button>
-        </div>
-    </div>
-
-    <div id="dashboard" class="screen hidden">
-        <nav class="top-nav">
-            <button onclick="goBack()" class="back-btn">⬅ ተመለስ</button>
-            <span id="user-display"></span>
-            <button onclick="logout()" class="logout-btn">Log Out 🚪</button>
-        </nav>
-        
-        <div id="announcement-bar" class="hidden"></div>
-
-        <div id="main-menu" class="grid-container">
+    <div id="app-container" class="hidden">
+        <header class="tg-header">
+            <div class="header-top">
+                <button id="back-btn" class="icon-btn hidden" onclick="goBack()">⬅</button>
+                <div class="brand-info">
+                    <span class="app-title">Mertule School Pro</span>
+                    <span id="status-text" class="status-online">online</span>
+                </div>
+                <button class="logout-icon" onclick="logout()">Logout 🚪</button>
             </div>
+            <div id="announcement-bar" class="ticker hidden"></div>
+        </header>
 
-        <div id="upload-section" class="hidden">
-            <h3>ፋይል መጫኛ (Upload)</h3>
-            <input type="file" id="fileInput" accept="image/*,video/*,.pdf">
-            <textarea id="textContent" placeholder="ፁህፍ መፃፍ ይችላሉ..."></textarea>
-            <button onclick="uploadContent()">ፖስት አድርግ</button>
-        </div>
+        <main id="main-content" class="scrollable-content"></main>
     </div>
 
+    <div id="login-section" class="login-overlay hidden">
+        <div class="login-card">
+            <h2>መለያዎን ያስገቡ</h2>
+            <div class="input-form">
+                <input type="text" id="fname" placeholder="ስም">
+                <input type="text" id="lname" placeholder="የአባት ስም">
+                <input type="tel" id="phone" placeholder="09/07... (የቴሌ ስልክ ብቻ)">
+                <input type="number" id="age" placeholder="እድሜ">
+                <select id="gender">
+                    <option value="">ፆታ</option>
+                    <option value="ወንድ">ወንድ</option>
+                    <option value="ሴት">ሴት</option>
+                </select>
+                <select id="role" onchange="checkRole()">
+                    <option value="student">ተማሪ</option>
+                    <option value="teacher">መምህር</option>
+                    <option value="admin">ርሰ መምህር / አስተዳደር</option>
+                </select>
+                <div id="pin-area"></div>
+                <button class="submit-btn" onclick="handleLogin()">መተግበሪያውን ክፈት</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
