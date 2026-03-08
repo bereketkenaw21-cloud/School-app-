@@ -32,12 +32,18 @@ const subjects = {
 
 // 2. Splash Screen (4.5 ሰከንድ ቆይታ)
 setTimeout(() => {
-    document.getElementById('splash').classList.add('hidden');
-    if (localStorage.getItem("isLoggedIn")) {
-        showDashboard();
-    } else {
-        document.getElementById('login-section').classList.remove('hidden');
-    }
+    const splash = document.getElementById('splash');
+    splash.style.transition = "opacity 1.2s ease";
+    splash.style.opacity = "0";
+
+    setTimeout(() => {
+        splash.classList.add('hidden');
+        if (localStorage.getItem("isLoggedIn")) {
+            showDashboard();
+        } else {
+            document.getElementById('login-section').classList.remove('hidden');
+        }
+    }, 1200);
 }, 4500);
 
 // 3. Login እና Role Security
@@ -65,15 +71,34 @@ function handleLogin() {
     showDashboard();
 }
 
-// 4. Dashboard (ርሰ መምህር መልዕክት መላኪያ ያለው)
+// 4. Dashboard (አዲሱ Search የተጨመረበት)
 function showDashboard() {
     document.getElementById('login-section').classList.add('hidden');
     document.getElementById('app-container').classList.remove('hidden');
     
+    // ሰርች እንዲታይ ማድረግ
+    const searchSec = document.getElementById('search-section');
+    if(searchSec) searchSec.classList.remove('hidden');
+
     const globalMsg = localStorage.getItem("global_news");
     if (globalMsg) displayAnnouncement(globalMsg);
 
     renderGrades();
+}
+
+// አዲሱ የፍለጋ ተግባር (Search Function)
+function filterSubjects() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+
+    for (let card of cards) {
+        let title = card.innerText.toLowerCase();
+        if (title.includes(input)) {
+            card.style.display = "flex";
+        } else {
+            card.style.display = "none";
+        }
+    }
 }
 
 function renderGrades() {
@@ -124,7 +149,7 @@ function displayAnnouncement(msg) {
     bar.innerHTML = `<marquee style="background:#ff4b2b; color:white; padding:8px; font-weight:bold;">📢 ርሰ መምህር፦ ${msg}</marquee>`;
 }
 
-// 6. የክፍል እና የሳብጀክት ምርጫ (ከአዳዲስ Icons ጋር)
+// 6. የክፍል እና የሳብጀክት ምርጫ
 function selectGrade(id) {
     document.getElementById('back-btn').classList.remove('hidden');
     const main = document.getElementById('main-content');
@@ -152,7 +177,7 @@ function showSubjects(id, stream = null) {
     main.innerHTML = html + `</div>`;
 }
 
-// 7. ፋይል ማሳያ (Image የተጨመረበት) እና ቻት
+// 7. ፋይል ማሳያ እና ቻት
 function openResources(s) {
     const role = localStorage.getItem("userRole");
     const main = document.getElementById('main-content');
