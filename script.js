@@ -1,4 +1,22 @@
-// 1. የትምህርት አይነቶች ዳታ (ከ9-12 አዲስ ካሪኩለም)
+// 1. የትምህርት አይነቶች ዳታ (Icons እና ቀለማት ለዲዛይን)
+const subjectDetails = {
+    "Mathematics": { icon: "🧮", color: "#e74c3c" },
+    "English": { icon: "🔤", color: "#3498db" },
+    "Amharic": { icon: "ሀ", color: "#27ae60" },
+    "Biology": { icon: "🌿", color: "#2ecc71" },
+    "Chemistry": { icon: "🧪", color: "#9b59b6" },
+    "Physics": { icon: "⚛️", color: "#34495e" },
+    "Geography": { icon: "🌍", color: "#f1c40f" },
+    "History": { icon: "🏛️", color: "#e67e22" },
+    "Citizenship": { icon: "⚖️", color: "#16a085" },
+    "Economics": { icon: "📉", color: "#2c3e50" },
+    "IT": { icon: "💻", color: "#2980b9" },
+    "HPE": { icon: "⚽", color: "#d35400" },
+    "General Business": { icon: "💼", color: "#7f8c8d" },
+    "General Science": { icon: "⚗️", color: "#8e44ad" }
+};
+
+// የትምህርት አይነቶች ዝርዝር (ከ9-12 አዲስ ካሪኩለም)
 const subjects = {
     9: ["Mathematics", "English", "Amharic", "Biology", "Chemistry", "Physics", "Geography", "History", "Citizenship", "Economics", "IT", "HPE"],
     10: ["Mathematics", "English", "Amharic", "Biology", "Chemistry", "Physics", "Geography", "History", "Citizenship", "Economics", "IT", "HPE"],
@@ -52,7 +70,6 @@ function showDashboard() {
     document.getElementById('login-section').classList.add('hidden');
     document.getElementById('app-container').classList.remove('hidden');
     
-    // የተቀመጠ የርሰ መምህር መልዕክት ካለ ማሳያ
     const globalMsg = localStorage.getItem("global_news");
     if (globalMsg) displayAnnouncement(globalMsg);
 
@@ -66,27 +83,27 @@ function renderGrades() {
     
     let html = "";
 
-    // ርሰ መምህር (Admin) ከሆነ መልዕክት መላኪያ ሳጥን ይታያል
     if (role === 'admin') {
         html += `
         <div class="admin-panel" style="background:white; margin:15px; padding:15px; border-radius:15px; border:2px solid #ff4b2b;">
             <h4 style="margin:0 0 10px 0; color:#ff4b2b;">📢 የርሰ መምህር መልዕክት ማስተላለፊያ</h4>
-            <textarea id="adminInput" placeholder="ለተማሪዎችና መምህራን መልዕክት ይፃፉ..." style="width:100%; height:60px; border-radius:10px; padding:10px;"></textarea>
+            <textarea id="adminInput" placeholder="ለተማሪዎችና መምህራን መልዕክት ይፃፉ..." style="width:100%; height:60px; border-radius:10px; padding:10px; border:1px solid #ddd;"></textarea>
             <button onclick="sendGlobalMessage()" style="width:100%; background:#ff4b2b; color:white; border:none; padding:10px; border-radius:10px; margin-top:5px; font-weight:bold;">መልዕክቱን አስተላልፍ</button>
         </div>`;
     }
 
     html += `<div class="grid-container">`;
     const grades = [
-        { id: 9, name: "9ኛ ክፍል", col: "#8e44ad", icon: "📚" },
-        { id: 10, name: "10ኛ ክፍል", col: "#2980b9", icon: "📖" },
-        { id: 11, name: "11ኛ ክፍል", col: "#16a085", icon: "🔬" },
+        { id: 9, name: "9ኛ ክፍል", col: "#8e44ad", icon: "🏢" },
+        { id: 10, name: "10ኛ ክፍል", col: "#2980b9", icon: "🏢" },
+        { id: 11, name: "11ኛ ክፍል", col: "#16a085", icon: "🎓" },
         { id: 12, name: "12ኛ ክፍል", col: "#d35400", icon: "🎓" }
     ];
 
     grades.forEach(g => {
-        html += `<div class="card" style="border-bottom: 5px solid ${g.col}" onclick="selectGrade(${g.id})">
-                    <div style="font-size:1.5rem;">${g.icon}</div>${g.name}
+        html += `<div class="card" style="border-bottom: 5px solid ${g.col}; background:white;" onclick="selectGrade(${g.id})">
+                    <div style="font-size:2rem; margin-bottom:5px;">${g.icon}</div>
+                    <div style="font-weight:bold;">${g.name}</div>
                  </div>`;
     });
     main.innerHTML = html + `</div>`;
@@ -107,14 +124,14 @@ function displayAnnouncement(msg) {
     bar.innerHTML = `<marquee style="background:#ff4b2b; color:white; padding:8px; font-weight:bold;">📢 ርሰ መምህር፦ ${msg}</marquee>`;
 }
 
-// 6. የክፍል እና የሳብጀክት ምርጫ
+// 6. የክፍል እና የሳብጀክት ምርጫ (ከአዳዲስ Icons ጋር)
 function selectGrade(id) {
     document.getElementById('back-btn').classList.remove('hidden');
     const main = document.getElementById('main-content');
     if (id === 11 || id === 12) {
         main.innerHTML = `<div class="grid-container">
-            <div class="card" onclick="showSubjects(${id}, 'natural')">🧪 Natural Science</div>
-            <div class="card" onclick="showSubjects(${id}, 'social')">🌍 Social Science</div>
+            <div class="card" style="background:white; border-left:8px solid #27ae60;" onclick="showSubjects(${id}, 'natural')">🧪 Natural Science</div>
+            <div class="card" style="background:white; border-left:8px solid #e67e22;" onclick="showSubjects(${id}, 'social')">🌍 Social Science</div>
         </div>`;
     } else showSubjects(id);
 }
@@ -123,29 +140,41 @@ function showSubjects(id, stream = null) {
     const main = document.getElementById('main-content');
     let list = stream ? subjects[id][stream] : subjects[id];
     let html = `<div class="grid-container">`;
+    
     list.forEach(s => {
-        html += `<div class="card" style="background:#f8f9fa" onclick="openResources('${s}')">${s}</div>`;
+        const detail = subjectDetails[s] || { icon: "📚", color: "#34495e" };
+        html += `
+            <div class="card" style="background:white; border-top: 5px solid ${detail.color}; display:flex; flex-direction:column; align-items:center; padding:20px;" onclick="openResources('${s}')">
+                <div style="font-size:2.5rem; margin-bottom:10px;">${detail.icon}</div>
+                <div style="font-weight:bold; color:#2c3e50;">${s}</div>
+            </div>`;
     });
     main.innerHTML = html + `</div>`;
 }
 
-// 7. ፋይል ማሳያ እና ቻት (ተማሪ መፃፍ አይችልም)
+// 7. ፋይል ማሳያ (Image የተጨመረበት) እና ቻት
 function openResources(s) {
     const role = localStorage.getItem("userRole");
     const main = document.getElementById('main-content');
-    let html = `<div style="padding:20px; text-align:center;"><h3>${s}</h3>
-        <div class="grid-container">
-            <div class="card" onclick="alert('PDF በመከፈት ላይ...')">📄 PDF</div>
-            <div class="card" onclick="alert('ቪዲዮ በመከፈት ላይ...')">🎬 Video</div>
-            <div class="card" onclick="openChat('${s}')">💬 Chat</div>
-        </div>`;
+    const detail = subjectDetails[s] || { icon: "📚", color: "#34495e" };
+
+    let html = `
+        <div style="padding:20px; text-align:center;">
+            <div style="font-size:4rem;">${detail.icon}</div>
+            <h3 style="color:${detail.color}">${s} መማሪያ ገፅ</h3>
+            <div class="grid-container">
+                <div class="card" style="background:#f0f4f8;" onclick="alert('PDF በመከፈት ላይ...')">📄 PDF መጽሐፍት</div>
+                <div class="card" style="background:#f0f4f8;" onclick="alert('ቪዲዮ በመከፈት ላይ...')">🎬 ቪዲዮዎች</div>
+                <div class="card" style="background:#f0f4f8;" onclick="alert('ምስሎች በመከፈት ላይ...')">🖼 ምስሎች (Images)</div>
+                <div class="card" style="background:#f0f4f8;" onclick="openChat('${s}')">💬 የውይይት ክፍል</div>
+            </div>`;
     
-    // መምህር/አስተዳደር ብቻ ፋይል መጫን ይችላሉ
     if (role !== 'student') {
-        html += `<div style="margin-top:20px; border-top:1px solid #ccc; padding-top:15px;">
-            <h4>ፋይል መጫኛ (መምህር/አስተዳደር)</h4>
-            <input type="file" id="fInput"><textarea id="tArea" placeholder="ማብራሪያ ይፃፉ..."></textarea>
-            <button onclick="alert('ፋይሉ ተጭኗል!')" style="background:#2481cc; color:white; border:none; padding:10px; border-radius:10px; width:100%;">ፖስት አድርግ</button>
+        html += `<div style="margin-top:25px; border-top:2px dashed ${detail.color}; padding-top:15px;">
+            <h4>📤 ፋይል መጫኛ (መምህር/አስተዳደር)</h4>
+            <input type="file" id="fInput" style="margin-bottom:10px;">
+            <textarea id="tArea" placeholder="ማብራሪያ ይፃፉ..." style="width:100%; border-radius:10px; padding:10px; border:1px solid #ccc;"></textarea>
+            <button onclick="alert('ፋይሉ ተጭኗል!')" style="background:${detail.color}; color:white; border:none; padding:12px; border-radius:12px; width:100%; font-weight:bold; margin-top:10px;">ፖስት አድርግ</button>
         </div>`;
     }
     main.innerHTML = html + `</div>`;
@@ -161,11 +190,11 @@ function openChat(s) {
     
     if (role !== 'student') {
         h += `<div style="display:flex; margin-top:10px;">
-                <input id="ci" placeholder="መልዕክት ይፃፉ..." style="flex:1;">
+                <input id="ci" placeholder="መልዕክት ይፃፉ..." style="flex:1; border-radius:15px; border:1px solid #ccc; padding:10px;">
                 <button onclick="sm()" style="background:#2481cc; color:white; border:none; padding:10px; border-radius:10px; margin-left:5px;">ላክ</button>
               </div>`;
     } else {
-        h += `<p style="color:red; font-size:0.8rem; margin-top:10px;">⚠️ ተማሪዎች መፃፍ አይችሉም፤ መመልከት ብቻ ነው የሚፈቀደው።</p>`;
+        h += `<p style="color:red; font-size:0.8rem; font-weight:bold; margin-top:10px;">⚠️ ተማሪዎች መፃፍ አይችሉም፤ መመልከት ብቻ ነው የሚፈቀደው።</p>`;
     }
     main.innerHTML = h + `</div>`;
 }
@@ -174,7 +203,9 @@ function sm() {
     const i = document.getElementById('ci');
     const b = document.getElementById('cb');
     if(i.value) {
-        b.innerHTML += `<p style="background:#dcf8c6; padding:8px; border-radius:10px; width:fit-content; align-self:flex-end; margin-left:auto;"><b>እኔ፦</b> ${i.value}</p>`;
+        b.innerHTML += `<div style="display:flex; justify-content:flex-end; margin-top:10px;">
+            <p style="background:#dcf8c6; padding:8px; border-radius:10px; width:fit-content; box-shadow: 0 1px 1px rgba(0,0,0,0.1);"><b>እኔ፦</b> ${i.value}</p>
+        </div>`;
         i.value = ""; b.scrollTop = b.scrollHeight;
     }
 }
