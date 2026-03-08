@@ -1,0 +1,15 @@
+{
+  "name": "Mertule Mariam School App",
+  "short_name": "MertuleApp",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#27ae60",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2997/2997300.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
